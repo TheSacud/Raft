@@ -3,7 +3,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Random;
 import java.util.Scanner;
 
 import service.IServerService;
@@ -11,8 +10,6 @@ import service.IServerService;
 public class ClienteTFD {
 
 	private static IServerService server;
-	private static int id = 0;
-	private static final String folRes = "&";
 
 	public static void main(String[] args) {
 		try {
