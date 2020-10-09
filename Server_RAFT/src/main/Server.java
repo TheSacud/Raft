@@ -15,7 +15,7 @@ public class Server implements IServer{
 	 * e o retorno de respostas.
 	 * @return String de resposta, se for o leader, ou o porto do leader, se for um follower
 	 */
-	public String request(String s,int id)  {
+	public String request(String s)  {
 		return s;
 	}
 
