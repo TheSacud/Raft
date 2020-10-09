@@ -17,12 +17,12 @@ public class ClientMain {
 			int port = 1234;
 			String name = "rmi://localhost/server";
 			Registry reg = LocateRegistry.getRegistry(port);
-			server = (IServerService) reg.lookup("rmi://localhost/server");
+			server = (IServerService) reg.lookup(name);
 			Scanner s = new Scanner(System.in);
 			System.out.println("Insira String: ");
 			String linha = s.nextLine();
 			String resposta = server.request(linha);
-			server = (IServerService) reg.lookup("rmi://localhost/server");
+			server = (IServerService) reg.lookup(name);
 			resposta = server.request(linha);
 			System.out.println("Resposta : \n"+resposta);
 
@@ -30,7 +30,7 @@ public class ClientMain {
 			s.close();
 		}catch (Exception e) {
 			e.printStackTrace();
-			System.err.print("Morreu " + e.getMessage()+"\n");
+			System.err.print(e.getMessage()+"\n");
 		}
 	}
 
