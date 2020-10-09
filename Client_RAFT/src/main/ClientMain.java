@@ -1,9 +1,8 @@
 package main;
 
-import java.rmi.NotBoundException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
@@ -15,15 +14,15 @@ public class ClientMain {
 
 	public static void main(String[] args) {
 		try {
-			int port = 12345;
+			int port = 1234;
 			String name = "rmi://localhost/server";
-			tryConnect(false);
-
+			Registry reg = LocateRegistry.getRegistry(port);
+			server = (IServerService) reg.lookup("rmi://localhost/server");
 			Scanner s = new Scanner(System.in);
 			System.out.println("Insira String: ");
 			String linha = s.nextLine();
 			String resposta = server.request(linha);
-			server = locateAux(port, name);
+			server = (IServerService) reg.lookup("rmi://localhost/server");
 			resposta = server.request(linha);
 			System.out.println("Resposta : \n"+resposta);
 
@@ -33,26 +32,6 @@ public class ClientMain {
 			e.printStackTrace();
 			System.err.print("Morreu " + e.getMessage()+"\n");
 		}
-	}
-
-	public static IServerService locateAux(int port, String name) {
-		try {
-			Registry reg = LocateRegistry.getRegistry(port);
-			return (IServerService) reg.lookup(name);
-		}catch ( RemoteException | NotBoundException e) {
-			return null;
-		}
-
-	}
-
-	public static boolean tryConnect(boolean connected) {
-		while(!connected) {
-			server = locateAux(123456, "rmi://localhost/server");
-			if(server instanceof Remote) {
-				connected = true;
-			}
-		}
-		return connected;
 	}
 
 
