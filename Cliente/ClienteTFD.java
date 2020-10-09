@@ -21,7 +21,7 @@ public class ClienteTFD {
 			System.out.println("Insira String: ");
 			String linha = s.nextLine();
 			String resposta = server.request(linha);
-			server = locateAux(port, "rmi://localhost/server");
+			server = locateAux(port, name);
 			resposta = server.request(linha);
 			System.out.println("Resposta : \n"+resposta);
 
