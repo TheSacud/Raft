@@ -8,7 +8,7 @@ import main.Server;
 
 
 
-public class ServerService extends UnicastRemoteObject{
+public class ServerService extends UnicastRemoteObject implements IServerService{
 
 	/**
 	 * 
