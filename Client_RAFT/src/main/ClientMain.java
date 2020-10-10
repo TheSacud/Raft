@@ -1,10 +1,8 @@
 package main;
 
 import java.rmi.registry.LocateRegistry;
-import java.io.Serializable;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.Random;
 import java.util.Scanner;
 
 import service.IServerService;
@@ -18,16 +16,19 @@ public class ClientMain{
 
 	public static void main(String[] args) {
 		try {
+			
+			Random r = new Random(1000);
+			int i = r.nextInt();
 			int port = 1234;
 			String name = "rmi://localhost/server";
-				Registry reg = LocateRegistry.getRegistry(port);
-				server = (IServerService) reg.lookup(name);
+			Registry reg = LocateRegistry.getRegistry(port);
+			server = (IServerService) reg.lookup(name);
 			Scanner s = new Scanner(System.in);
 			System.out.println("Insira String: ");
 			String linha = s.nextLine();
-			String resposta = server.request(linha);
+			String resposta = server.request(linha, i);
 			server = (IServerService) reg.lookup(name);
-			resposta = server.request(linha);
+			resposta = server.request(linha, i);
 			System.out.println("Resposta : \n"+resposta);
 
 
@@ -37,6 +38,4 @@ public class ClientMain{
 			System.err.print(e.getMessage()+"\n");
 		}
 	}
-
-
 }

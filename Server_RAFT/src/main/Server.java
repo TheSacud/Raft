@@ -13,10 +13,10 @@ public class Server implements IServer{
 	/**
 	 * Funcao partilhada pelo ClientRMI, permite troca de mensagens com o client
 	 * e o retorno de respostas.
-	 * @return String de resposta, se for o leader, ou o porto do leader, se for um follower
+	 * @return String de resposta mais o client id
 	 */
-	public String request(String s)  {
-		return s;
+	public String execute(String s, int i)  {
+		return s + i;
 	}
 
 }
