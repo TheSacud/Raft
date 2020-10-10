@@ -1,22 +1,16 @@
 package service;
-
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
 import enums.State;
 import main.Server;
 
-
-
 public class ServerService extends UnicastRemoteObject implements IServerService{
-
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 9217032947382738515L;
-	
+
 	private Server server;
 
 	public ServerService(int port, State s) throws RemoteException {
@@ -34,7 +28,7 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 	public State state() {
 		return server.getState();
 	}
-	
+
 
 
 }
