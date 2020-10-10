@@ -3,6 +3,7 @@ package main;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import enums.State;
 import service.ServerService;
 
 public class ServerMain {
@@ -18,13 +19,15 @@ public class ServerMain {
 		
 		try{
 			
-			server = new ServerService(port);
-
+			server = new ServerService(port, State.LEADER);
+			ServerService server2 = new ServerService(1111, State.FOLLOWER);
+			
 			Registry reg = LocateRegistry.createRegistry(port);
 			
-			reg.rebind("rmi://localhost/server", server);
+			reg.bind("rmi://localhost/server", server);
 			
 			System.out.println("Server estah a escutar no porto " + args[0]);
+			System.out.println(server2.getPort() + " " + server2.state());
 			
 			
 		}catch(Exception e){
