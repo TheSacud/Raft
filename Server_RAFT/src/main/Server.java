@@ -28,4 +28,9 @@ public class Server implements IServer{
 		return this.state;
 	}
 
+	public int appendEntry(String info) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
