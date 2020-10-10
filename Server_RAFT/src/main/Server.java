@@ -17,7 +17,7 @@ public class Server implements IServer{
 	}
 
 	public String execute(String s, int i)  {
-		return s + i;
+		return s + " " + i;
 	}
 
 	public int getPort() {
