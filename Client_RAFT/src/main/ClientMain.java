@@ -12,6 +12,8 @@ public class ClientMain{
 
 	public static void main(String[] args) {
 		try {
+			Random r = new Random();
+			int id = r.nextInt(1000000);
 			int idOperacao = 0;
 			String name = "rmi://localhost/server";
 			int port = 1111;
@@ -33,7 +35,8 @@ public class ClientMain{
 				if(linha.equals("exit")) {
 					sair = false;
 				}else {
-					String resposta = server.request(linha, idOperacao);
+					String ids = Integer.toString(id) + ":" + Integer.toString(idOperacao);
+					String resposta = server.request(linha, ids);
 					idOperacao++;
 					System.out.println("Resposta : \n"+resposta);
 				}

@@ -4,6 +4,6 @@ import java.rmi.RemoteException;
 
 public interface IServerService extends Remote {
 
-	public String request(String s, int i) throws RemoteException;
+	public String request(String s, String i) throws RemoteException;
 
 }

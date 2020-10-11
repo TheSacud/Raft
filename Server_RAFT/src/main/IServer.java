@@ -4,6 +4,6 @@ import java.rmi.RemoteException;
 
 public interface IServer extends Remote{
 
-	public String execute(String s, int i) throws RemoteException;
+	public String execute(String s, String i) throws RemoteException;
 
 }

@@ -17,7 +17,7 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 		server = new Server(port, s);
 	}
 
-	public String request(String s, int i) throws RemoteException{
+	public String request(String s, String i) throws RemoteException{
 		return server.execute(s, i);
 	}
 
@@ -30,7 +30,7 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 		return server.getState();
 	}
 	
-	public int AppendEntriesRPC(String info) throws RemoteException {
+	public int appendEntriesRPC(String info) throws RemoteException {
 		return server.appendEntry(info);
 	}
 
