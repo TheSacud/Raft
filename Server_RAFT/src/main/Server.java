@@ -34,7 +34,7 @@ public class Server implements IServer{
 		int idCliente =  Integer.parseInt(dividir[0]);
 		int idOperacao = Integer.parseInt(dividir[1]);
 		table.add(s+":"+idCliente+":"+idOperacao);
-		String log = "Cliente: " + idCliente + ", Operacao: " + idOperacao + ", String no log ->> " + s;
+		String log = "Cliente: " + idCliente + ", Operacao: " + idOperacao + ", Log ->> " + s;
 		System.out.println(log);
 		try {
 			escreveLog(log);
@@ -88,7 +88,7 @@ public class Server implements IServer{
 					}
 					server.append(info,i);
 				} catch (RemoteException | NotBoundException e) {
-					System.out.println("Ah procura de servers...");
+					System.out.println("Ah procura de servers para replicar...");
 				}
 			}
 		}

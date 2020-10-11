@@ -16,9 +16,10 @@ public class ServerMain {
 
 	public static void main(String[] args) {
 		ServerService server = null;
-		System.out.println("Introduza porto do server: ");
+		System.out.println("Introduza porto do server: <<1111,1112,1113,1114,1115>>");
 		Scanner sc = new Scanner(System.in);
 		int port = Integer.parseInt(sc.nextLine());
+		
 		try{
 			if(verificaSeJaHaLider(port)) {
 				server = new ServerService(port, State.FOLLOWER);
@@ -54,7 +55,7 @@ public class ServerMain {
 						existe = true;
 					}
 				} catch (RemoteException | NotBoundException e) {
-					System.out.println("Ah procura de servers...");
+					//System.out.println("Ah procura de servers ja online...");
 				}
 			}
 		}
