@@ -1,6 +1,5 @@
 package main;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.NotBoundException;
@@ -30,10 +29,6 @@ public class Server implements IServer{
 		String diretoria = System.getProperty("user.dir");
 		File ficheiroLog = new File(diretoria + "/logServer"+port+".txt");
 		ficheiroLog.delete();
-	}
-
-	public void leader() {
-		ArrayList<Integer> ports = new ArrayList<>();
 	}
 
 	public String execute(String s, String i)  {
@@ -94,7 +89,7 @@ public class Server implements IServer{
 				}
 				server.append(info,i);
 			} catch (RemoteException | NotBoundException e) {
-				System.out.println("A procura");
+				System.out.println("Ah procura de servers...");
 			}
 		}
 	}
