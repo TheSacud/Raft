@@ -76,7 +76,7 @@ public class Server implements IServer{
 		ports.add(1115);
 		for (Integer port : ports) {
 			IServerService server;
-			String name = "rmi://server"+port;
+			String name = "server:"+port;
 			Registry reg;
 			try {
 				reg = LocateRegistry.getRegistry(port);

@@ -20,7 +20,7 @@ public class ServerMain {
 				server = new ServerService(port, State.FOLLOWER);
 			}
 			Registry reg = LocateRegistry.createRegistry(port);
-			reg.rebind("rmi:/server"+port, server);
+			reg.rebind("server:"+port, server);
 			System.out.println("Server ah escutar no porto " + port);
 			sc.close();
 		}catch(Exception e){

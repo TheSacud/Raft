@@ -23,7 +23,7 @@ public class ClientMain{
 			
 			while(!ligado) {
 				int i = r.nextInt(5);
-				String nomeServer = "rmi:/server"+portos[i];
+				String nomeServer = "server:"+portos[i];
 				try {
 					Registry reg = LocateRegistry.getRegistry(portos[i]);
 					server = (IServerService) reg.lookup(nomeServer);
@@ -54,7 +54,7 @@ public class ClientMain{
 						System.out.println("Efetue novamente a operação");
 						String [] splitReposta = resposta.split(":");
 						String portoLider = splitReposta[2];
-						String nomeServer = "rmi:/server"+portoLider;
+						String nomeServer = "server:"+portoLider;
 						try {
 							Registry reg = LocateRegistry.getRegistry(portoLider);
 							server = (IServerService) reg.lookup(nomeServer);
