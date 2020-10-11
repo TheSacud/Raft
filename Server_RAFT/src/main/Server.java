@@ -19,13 +19,11 @@ public class Server implements IServer{
 	private int port;
 	private State state;
 	private List<String> table ;
-	private int lastEntry;
 
 	public Server(int port, State s){
 		this.port = port;
 		this.state = State.FOLLOWER;
 		this.table = new ArrayList<>();
-		lastEntry = 0;
 		String diretoria = System.getProperty("user.dir");
 		File ficheiroLog = new File(diretoria + "/logServer"+port+".txt");
 		ficheiroLog.delete();
@@ -36,8 +34,7 @@ public class Server implements IServer{
 		int idCliente =  Integer.parseInt(dividir[0]);
 		int idOperacao = Integer.parseInt(dividir[1]);
 		table.add(s+":"+idCliente+":"+idOperacao);
-		lastEntry++;
-		String log = "Operacao: " + idOperacao +", Cliente: " + idCliente + ", String no log: " + s;
+		String log = "Cliente: " + idCliente + ", Operacao: " + idOperacao + ", String no log: " + s;
 		System.out.println(log);
 		try {
 			escreveLog(log);

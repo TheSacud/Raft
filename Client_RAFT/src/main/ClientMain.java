@@ -34,7 +34,8 @@ public class ClientMain{
 					String ids = Integer.toString(id) + ":" + Integer.toString(idOperacao);
 					String resposta = server.request(linha, ids);
 					idOperacao++;
-					System.out.println("Resposta : \n"+resposta);
+					System.out.println("Resposta : "+resposta);
+					System.out.println();
 				}
 			}
 			s.close();
