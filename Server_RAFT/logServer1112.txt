@@ -1,5 +1,0 @@
-Cliente: 587870, Operacao: 0, String no log: ola
-Cliente: 587870, Operacao: 1, String no log: 2 try
-Cliente: 587870, Operacao: 2, String no log: vamos nessa :
-Cliente: 587870, Operacao: 3, String no log: bora
-Cliente: 587870, Operacao: 4, String no log: quit
