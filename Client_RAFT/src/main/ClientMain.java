@@ -41,7 +41,7 @@ public class ClientMain{
 			Scanner s = new Scanner(System.in);
 			boolean sair = true;
 			while(sair){
-				System.out.println("Insira String: ");
+				System.out.println("Insira String: (exit para sair)");
 				String linha = s.nextLine();
 				if(linha.equals("exit")) {
 					sair = false;

@@ -34,7 +34,7 @@ public class Server implements IServer{
 		int idCliente =  Integer.parseInt(dividir[0]);
 		int idOperacao = Integer.parseInt(dividir[1]);
 		table.add(s+":"+idCliente+":"+idOperacao);
-		String log = "Cliente: " + idCliente + ", Operacao: " + idOperacao + ", String no log: " + s;
+		String log = "Cliente: " + idCliente + ", Operacao: " + idOperacao + ", String no log ->> " + s;
 		System.out.println(log);
 		try {
 			escreveLog(log);
@@ -82,7 +82,7 @@ public class Server implements IServer{
 				reg = LocateRegistry.getRegistry(port);
 				server = (IServerService) reg.lookup(name);
 				if(server instanceof Remote) {
-					System.out.println("Encontrou o server no porto: " + port);
+					System.out.println("Replicou para o server no porto: " + port);
 				}
 				server.append(info,i);
 			} catch (RemoteException | NotBoundException e) {
