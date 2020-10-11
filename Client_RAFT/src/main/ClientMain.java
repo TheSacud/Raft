@@ -56,7 +56,7 @@ public class ClientMain{
 						String portoLider = splitReposta[2];
 						String nomeServer = "server:"+portoLider;
 						try {
-							Registry reg = LocateRegistry.getRegistry(portoLider);
+							Registry reg = LocateRegistry.getRegistry(Integer.parseInt(portoLider));
 							server = (IServerService) reg.lookup(nomeServer);
 							if(server instanceof Remote) {
 								ligado = true;

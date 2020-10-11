@@ -1,0 +1,2 @@
+Cliente: 479540, Operacao: 0, String no log: ola
+Cliente: 479540, Operacao: 1, String no log: ola
