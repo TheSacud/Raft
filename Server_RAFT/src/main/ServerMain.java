@@ -19,7 +19,15 @@ public class ServerMain {
 		System.out.println("Introduza porto do server: <<1111,1112,1113,1114,1115>>");
 		Scanner sc = new Scanner(System.in);
 		int port = Integer.parseInt(sc.nextLine());
-		
+		boolean sair = false;
+		while(!sair) {
+			if(port == 1111 || port == 1112 || port == 1113 || port == 1114 || port == 1115) {
+				sair = true;
+			}else {
+				System.out.println("Introduza corretamente o porto do server: <<1111,1112,1113,1114,1115>>");
+				port = Integer.parseInt(sc.nextLine());
+			}
+		}
 		try{
 			if(verificaSeJaHaLider(port)) {
 				server = new ServerService(port, State.FOLLOWER);
