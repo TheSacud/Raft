@@ -22,7 +22,7 @@ public class Server implements IServer{
 
 	public Server(int port, State s){
 		this.port = port;
-		this.state = State.FOLLOWER;
+		this.state = s;
 		this.table = new ArrayList<>();
 		String diretoria = System.getProperty("user.dir");
 		File ficheiroLog = new File(diretoria + "/logServer"+port+".txt");
@@ -76,7 +76,7 @@ public class Server implements IServer{
 		ports.add(1115);
 		for (Integer port : ports) {
 			IServerService server;
-			String name = "rmi://localhost/server"+port;
+			String name = "rmi://server"+port;
 			Registry reg;
 			try {
 				reg = LocateRegistry.getRegistry(port);
@@ -89,6 +89,10 @@ public class Server implements IServer{
 				System.out.println("Ah procura de servers...");
 			}
 		}
+	}
+
+	public String getLeader() {
+		return "1111";
 	}
 
 }

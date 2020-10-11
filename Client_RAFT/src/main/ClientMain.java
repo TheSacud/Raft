@@ -1,5 +1,7 @@
 package main;
+import java.rmi.NotBoundException;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Random;
@@ -15,13 +17,26 @@ public class ClientMain{
 			Random r = new Random();
 			int id = r.nextInt(1000000);
 			int idOperacao = 0;
-			String name = "rmi://localhost/server1111";
-			int port = 1111;
-			Registry reg = LocateRegistry.getRegistry(port);
-			server = (IServerService) reg.lookup(name);
-			if(server instanceof Remote) {
-				System.out.println("Encontrou o LEADER server no port: " + port);
+			
+			boolean ligado = false;
+			int[] portos = {1111,1112,1113,1114,1115};
+			
+			while(!ligado) {
+				int i = r.nextInt(5);
+				String nomeServer = "rmi:/server"+portos[i];
+				try {
+					Registry reg = LocateRegistry.getRegistry(portos[i]);
+					server = (IServerService) reg.lookup(nomeServer);
+					if(server instanceof Remote) {
+						System.out.println("Encontrou um server no port: " + portos[i]);
+						ligado = true;
+					}
+				}catch ( RemoteException | NotBoundException e) {
+					System.out.println("Tentando estabelecer ligação ao server...");
+				}
+				
 			}
+			
 
 			Scanner s = new Scanner(System.in);
 			boolean sair = true;
@@ -33,9 +48,28 @@ public class ClientMain{
 				}else {
 					String ids = Integer.toString(id) + ":" + Integer.toString(idOperacao);
 					String resposta = server.request(linha, ids);
-					idOperacao++;
-					System.out.println("Resposta : "+resposta);
-					System.out.println();
+					if(resposta.contains("error:leader:")) {
+						System.out.println("Servidor contactado não eh o lider!");
+						System.out.println("A mudar de lider...");
+						System.out.println("Efetue novamente a operação");
+						String [] splitReposta = resposta.split(":");
+						String portoLider = splitReposta[2];
+						String nomeServer = "rmi:/server"+portoLider;
+						try {
+							Registry reg = LocateRegistry.getRegistry(portoLider);
+							server = (IServerService) reg.lookup(nomeServer);
+							if(server instanceof Remote) {
+								ligado = true;
+							}
+						}catch ( RemoteException | NotBoundException e) {
+							System.out.println("Tentando estabelecer ligação ao server...");
+						}
+						
+					}else {
+						idOperacao++;
+						System.out.println("Resposta : "+resposta);
+						System.out.println();
+					}
 				}
 			}
 			s.close();

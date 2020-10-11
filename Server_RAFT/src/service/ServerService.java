@@ -18,8 +18,14 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 	}
 
 	public String request(String s, String i) throws RemoteException{
-		appendEntriesRPC(s,i);
-		return server.execute(s, i);
+		if(server.getState().equals(State.LEADER)) {
+			appendEntriesRPC(s,i);
+			return server.execute(s, i);
+		}else {
+			String resposta = "error:leader:"+server.getLeader()+":"+s+":"+i;
+			return resposta;
+		}
+		
 	}
 
 	public int getPort() {
