@@ -17,14 +17,10 @@ public class ClientMain{
 			int idOperacao = 0;
 			String name = "rmi://localhost/server1111";
 			int port = 1111;
-			try {
-				Registry reg = LocateRegistry.getRegistry(port);
-				server = (IServerService) reg.lookup(name);
-				if(server instanceof Remote) {
-					System.out.println("Encontrou o LEADER server no port: " + port);
-				}
-			}catch (Exception e) {
-				System.out.println("Ah procura....");
+			Registry reg = LocateRegistry.getRegistry(port);
+			server = (IServerService) reg.lookup(name);
+			if(server instanceof Remote) {
+				System.out.println("Encontrou o LEADER server no port: " + port);
 			}
 
 			Scanner s = new Scanner(System.in);

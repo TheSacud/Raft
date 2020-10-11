@@ -3,11 +3,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import enums.State;
+import service.IServerService;
 
 public class Server implements IServer{
 
@@ -70,9 +76,27 @@ public class Server implements IServer{
 		return this.state;
 	}
 
-	public int appendEntry(String info) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void appendEntry(String info, String i) {
+		List<Integer> ports = new ArrayList<>();
+		ports.add(1112);
+		ports.add(1113);
+		ports.add(1114);
+		ports.add(1115);
+		for (Integer port : ports) {
+			IServerService server;
+			String name = "rmi://localhost/server"+port;
+			Registry reg;
+			try {
+				reg = LocateRegistry.getRegistry(port);
+				server = (IServerService) reg.lookup(name);
+				if(server instanceof Remote) {
+					System.out.println("Encontrou o server no porto: " + port);
+				}
+				server.append(info,i);
+			} catch (RemoteException | NotBoundException e) {
+				System.out.println("A procura");
+			}
+		}
 	}
 
 }

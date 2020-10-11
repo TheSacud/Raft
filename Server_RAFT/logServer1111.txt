@@ -1,1 +1,4 @@
-Operacao: 0, Cliente: 297330, String no log: ola
+Operacao: 0, Cliente: 394529, String no log: ola
+Operacao: 1, Cliente: 394529, String no log: adeus
+Operacao: 2, Cliente: 394529, String no log: ola
+Operacao: 3, Cliente: 394529, String no log: ola

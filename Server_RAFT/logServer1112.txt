@@ -1,0 +1,1 @@
+Operacao: 3, Cliente: 394529, String no log: ola
