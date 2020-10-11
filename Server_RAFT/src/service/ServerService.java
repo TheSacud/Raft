@@ -13,7 +13,7 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 
 	private Server server;
 
-	public ServerService(int port, @SuppressWarnings("exports") State s) throws RemoteException {
+	public ServerService(int port, State s) throws RemoteException {
 		server = new Server(port, s);
 	}
 
@@ -32,8 +32,7 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 		return server.getPort();
 	}
 
-	@SuppressWarnings("exports")
-	public State state() {
+	public State state() throws RemoteException{
 		return server.getState();
 	}
 	

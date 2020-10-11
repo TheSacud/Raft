@@ -70,29 +70,59 @@ public class Server implements IServer{
 
 	public void appendEntry(String info, String i) {
 		List<Integer> ports = new ArrayList<>();
+		ports.add(1111);
 		ports.add(1112);
 		ports.add(1113);
 		ports.add(1114);
 		ports.add(1115);
-		for (Integer port : ports) {
-			IServerService server;
-			String name = "server:"+port;
-			Registry reg;
-			try {
-				reg = LocateRegistry.getRegistry(port);
-				server = (IServerService) reg.lookup(name);
-				if(server instanceof Remote) {
-					System.out.println("Replicou para o server no porto: " + port);
+		for (Integer porto : ports) {
+			if(porto != port) {
+				IServerService server;
+				String name = "server:"+porto;
+				Registry reg;
+				try {
+					reg = LocateRegistry.getRegistry(porto);
+					server = (IServerService) reg.lookup(name);
+					if(server instanceof Remote) {
+						System.out.println("Replicou para o server no porto: " + porto);
+					}
+					server.append(info,i);
+				} catch (RemoteException | NotBoundException e) {
+					System.out.println("Ah procura de servers...");
 				}
-				server.append(info,i);
-			} catch (RemoteException | NotBoundException e) {
-				System.out.println("Ah procura de servers...");
 			}
 		}
 	}
+	
+	
 
 	public String getLeader() {
-		return "1111";
+		List<Integer> ports = new ArrayList<>();
+		ports.add(1111);
+		ports.add(1112);
+		ports.add(1113);
+		ports.add(1114);
+		ports.add(1115);
+		String result = "erro";
+		for (Integer porto : ports) {
+			if(porto != port) {
+				IServerService server;
+				String name = "server:"+porto;
+				Registry reg;
+				try {
+					reg = LocateRegistry.getRegistry(porto);
+					server = (IServerService) reg.lookup(name);
+					if(server instanceof Remote) {
+						if(server.state().equals(State.LEADER)) {
+							result = Integer.toString(porto);
+						}
+					}
+				} catch (RemoteException | NotBoundException e) {
+					//System.out.println("Ah procura de servers...");
+				}
+			}
+		}
+		return result;
 	}
 
 }
