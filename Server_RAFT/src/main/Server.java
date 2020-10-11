@@ -22,7 +22,7 @@ public class Server implements IServer{
 		this.table = new ArrayList<>();
 		lastEntry = 0;
 		String diretoria = System.getProperty("user.dir");
-		File ficheiroLog = new File(diretoria + "/log.txt");
+		File ficheiroLog = new File(diretoria + "/logServer"+port+".txt");
 		ficheiroLog.delete();
 	}
 
@@ -48,12 +48,12 @@ public class Server implements IServer{
 
 	private void escreveLog(String log) throws IOException {
 		String diretoria = System.getProperty("user.dir");
-		File ficheiroLog = new File(diretoria + "/log.txt");
+		File ficheiroLog = new File(diretoria + "/logServer"+port+".txt");
 		ficheiroLog.createNewFile();
 		Scanner sc = new Scanner(ficheiroLog);
 		while(sc.hasNextLine()) {
 			sc.nextLine();
-			
+
 		}
 		FileOutputStream fos0 = new FileOutputStream(ficheiroLog,true);
 		fos0.write(log.getBytes());

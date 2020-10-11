@@ -16,7 +16,7 @@ public class ServerMain {
 		try{
 			server = new ServerService(port, State.LEADER);
 			Registry reg = LocateRegistry.createRegistry(port);
-			reg.bind("rmi://localhost/server", server);
+			reg.bind("rmi://localhost/server"+port, server);
 			System.out.println("Server ah escutar no porto " + port);
 			sc.close();
 		}catch(Exception e){

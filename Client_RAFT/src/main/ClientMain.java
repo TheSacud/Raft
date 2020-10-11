@@ -15,7 +15,7 @@ public class ClientMain{
 			Random r = new Random();
 			int id = r.nextInt(1000000);
 			int idOperacao = 0;
-			String name = "rmi://localhost/server";
+			String name = "rmi://localhost/server1111";
 			int port = 1111;
 			try {
 				Registry reg = LocateRegistry.getRegistry(port);
