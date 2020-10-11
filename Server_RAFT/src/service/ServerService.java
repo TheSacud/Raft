@@ -18,6 +18,7 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 	}
 
 	public String request(String s, String i) throws RemoteException{
+		appendEntriesRPC(s);
 		return server.execute(s, i);
 	}
 
