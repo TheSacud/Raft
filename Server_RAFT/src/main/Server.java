@@ -17,6 +17,7 @@ public class Server implements IServer{
 	}
 
 	public String execute(String s, int i)  {
+		System.out.println("Escreveu no log " + s + " do cliente " + i);
 		return s + " " + i;
 	}
 
