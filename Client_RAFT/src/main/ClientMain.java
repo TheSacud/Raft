@@ -50,7 +50,7 @@ public class ClientMain{
 					String resposta = server.request(linha, ids);
 					if(resposta.contains("error:leader:")) {
 						System.out.println("Servidor contactado não eh o lider!");
-						System.out.println("A mudar de lider...");
+						System.out.println("A mudar para o lider...");
 						System.out.println("Efetue novamente a operação");
 						String [] splitReposta = resposta.split(":");
 						String portoLider = splitReposta[2];

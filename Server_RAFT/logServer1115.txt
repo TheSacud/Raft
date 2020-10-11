@@ -1,1 +1,3 @@
-Cliente: 665987, Operacao: 0, String no log ->> ola
+Cliente: 513938, Operacao: 0, Log ->> primeiro
+Cliente: 513938, Operacao: 1, Log ->> ola
+Cliente: 115072, Operacao: 0, Log ->> ola
