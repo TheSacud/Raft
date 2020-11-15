@@ -10,7 +10,8 @@ public interface IServerService extends Remote {
 
 	public String append(String info, String i) throws RemoteException;
 	
-	@SuppressWarnings("exports")
 	public State state() throws RemoteException;
+
+	public int AppendEntriesRPC(int term, int port, String entry) throws RemoteException;
 
 }

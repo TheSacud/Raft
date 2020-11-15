@@ -44,6 +44,12 @@ public class ServerService extends UnicastRemoteObject implements IServerService
 		return server.execute(info,i);
 	}
 
+	@Override
+	public int AppendEntriesRPC(int term, int port, String entry) {
+		System.out.println("O jorge é gay");
+		return 0;
+	}
+
 
 
 }

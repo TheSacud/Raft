@@ -32,7 +32,7 @@ public class ClientMain{
 						ligado = true;
 					}
 				}catch ( RemoteException | NotBoundException e) {
-					System.out.println("Tentando estabelecer ligação ao server...");
+					System.out.println("Tentando estabelecer ligacaho ao server...");
 				}
 				
 			}
